@@ -1,6 +1,6 @@
 const result = require('./gitconsume')
 // Utilizando o argv do node para receber o user do Github via terminal
-if (process.argvs == undefined || process.argvs == "") {
+if (process.argv == undefined || process.argv == "") {
     console.log(" ❌ You need to pass a github user. ❌")
     console.log(" ▶️ Example: node gitconsumetest.js tavares1")
     return 1
