@@ -1,5 +1,15 @@
 const result = require('./gitconsume')
-const user = 'emanuellucascomp'
-let message = result.getResponse(user)
+let argv = require('yargs')
+    .option('username', {
+        alias: 'u',
+        describe: 'Example: node gitconsumetest.js -u tavares1'
+    })
+    .demandOption('username')
+    .argv
 
-console.log(message)
+const user = argv.username
+let message = result.getResponse(user)
+message.then(res => {
+    console.log(res)
+})
+

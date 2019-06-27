@@ -27,7 +27,7 @@ client.on('message', message => {
                 message.channel.send('Invalid argument')
             }
         break            
-    }
+    } 
 })
 
 client.login(process.env.TOKEN)
