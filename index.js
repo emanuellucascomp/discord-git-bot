@@ -20,11 +20,12 @@ client.on('message', message => {
             message.channel.send('Take some coffee...')
             break
         case 'info':
-            if(args[1]){
-                message.channel.send('Version 0.1')
-
+            if(!args[1]){
+                message.channel.send('Bot usage: !info gitusername')
             } else {
-                message.channel.send('Invalid argument')
+                result.getResponse(args[1]).then(res => {
+                    message.channel.send(res)
+                })
             }
         break            
     } 

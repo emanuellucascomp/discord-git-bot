@@ -11,10 +11,11 @@ function getResponse(user) {
                 result = "A tanto tempo que você não faz nada, não consigo trackear"
                 return result
             }
-
             // 
+            let events = response.data
+            let validEvents = events.filter(filterValidEvents)
             let currentDate = new Date()
-            let lastEventDate = response.data[0].created_at
+            let lastEventDate = validEvents[0].created_at
             let last = new Date(lastEventDate)
             let timestampDiff = currentDate.valueOf() - last.valueOf()
             let timeWithoutDoAnythingInHours = Math.floor(timestampDiff/3600000)
@@ -31,6 +32,10 @@ function getResponse(user) {
         }).catch(err => {
             console.log(err)
         })
+}
+
+function filterValidEvents(event){
+    return event.type == "PushEvent"
 }
 
 
