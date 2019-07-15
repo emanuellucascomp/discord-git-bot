@@ -6,8 +6,10 @@ const baseUrl = 'https://api.github.com/'
 function getResponse(user) {
     return axios.get(baseUrl + 'users/' + user + '/events/public')
         .then(response => {
+            let events = response.data
+            let validEvents = events.filter(filterValidEvents)
             let currentDate = new Date()
-            let lastEventDate = response.data[0].created_at
+            let lastEventDate = validEvents[0].created_at
             let last = new Date(lastEventDate)
             if (currentDate.getDate() != last.getDate()) {
                 let timestampDiff = currentDate.valueOf() - last.valueOf()
@@ -24,6 +26,10 @@ function getResponse(user) {
         }).catch(err => {
             console.log(err)
         })
+}
+
+function filterValidEvents(event){
+    return event.type == "PushEvent"
 }
 
 
