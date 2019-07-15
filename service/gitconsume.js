@@ -14,6 +14,7 @@ function getResponse(user) {
             // 
             let events = response.data
             let validEvents = events.filter(filterValidEvents)
+            console.log(validEvents)
             let currentDate = new Date()
             let lastEventDate = validEvents[0].created_at
             let last = new Date(lastEventDate)
@@ -23,8 +24,8 @@ function getResponse(user) {
             if (timeWithoutDoAnythingInHours >= 24) {
                 result = `Já são cerca de ${timeWithoutDoAnythingInHours} horas sem fazer nada no Github...\nOu seja quase ${timeWithoutDoAnythingInDays} dias...\nVamos lá campeão, você consegue! 💪\nWrite code, blow minds! 🤯`
             } else {
-                let lastActvity = response.data[0]
-                let date = new Date(lastActvity.created_at)
+                let lastActvity = validEvents[0]
+                let date = new Date(lastEventDate)
                 result =`Sua última atividade no Github foi um ${lastActvity.type}🆕\nNo repositório ${lastActvity.repo.name} 🗂\nDo user fabuloso ${lastActvity.actor.display_login} 🧙‍♂️\nData ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()} 📆`
             }
             //let keys = Object.keys(data).map((key) => [key, data[key]])
