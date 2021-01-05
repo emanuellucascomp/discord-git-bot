@@ -9,7 +9,7 @@
   "author": "@emanuellucascomp",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "discord.js": "^11.5.1",
     "dotenv": "^8.0.0",
     "yargs": "^13.2.4"
